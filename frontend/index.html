@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#061321">
+
+    <title>AIRVISION | Environmental Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✦</div>
+            <h2>AIR<span>VISION</span></h2>
+            <p>See the air. Live better.</p>
+        </div>
+
+        <nav class="navigation">
+
+            <a href="#" class="nav-link active" data-page="overview">
+                ⌂ <span>Overview</span>
+            </a>
+
+            <a href="#" class="nav-link" data-page="map">
+                ⌖ <span>Air Quality Map</span>
+            </a>
+
+            <a href="#" class="nav-link" data-page="analytics">
+                ▥ <span>Pollution Analytics</span>
+            </a>
+
+            <a href="#" class="nav-link" data-page="forecast">
+                ▦ <span>Forecast</span>
+            </a>
+
+            <a href="#" class="nav-link" data-page="health">
+                ♡ <span>Health Recommendations</span>
+            </a>
+
+            <a href="#" class="nav-link" data-page="assistant">
+                ✧ <span>AI Assistant</span>
+            </a>
+
+            <a href="#" class="nav-link" data-page="alerts">
+                ♧ <span>Alerts</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span>POWERED BY OPEN DATA</span>
+            <p>For a greener India 🌱</p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div class="location-box">
+
+                <span class="location-icon">⌖</span>
+
+                <div class="location-input">
+                    <small>Your Location</small>
+
+                    <input
+                        type="text"
+                        id="location-search"
+                        placeholder="Search area, city, state..."
+                    >
+                    <span id="connection-status" class="connection-status" role="status" aria-live="polite">
+                        Connecting to AIRVISION...
+                    </span>
+                </div>
+
+                <button id="search-location" aria-label="Search location">
+                    ⌕
+                </button>
+
+            </div>
+
+            <button class="detect-btn" id="detect-location">
+                ◎ Use My Location
+            </button>
+
+            <div class="weather-summary">
+                <span id="weather-summary-icon">☀</span>
+
+                <div>
+                    <h3 id="temperature">--°C</h3>
+                    <small>Current weather</small>
+                </div>
+            </div>
+
+            <button
+                class="theme-btn"
+                id="theme-toggle"
+                aria-label="Toggle theme"
+            >
+                ☾
+            </button>
+
+        </header>
+
+
+        <!-- =================================
+             OVERVIEW PAGE
+        ================================== -->
+
+        <section class="page active" id="overview-page">
+
+            <!-- HERO SECTION -->
+            <section class="hero-section">
+
+                <div class="hero-content">
+
+                    <span class="hero-tag">
+                        AIRVISION ENVIRONMENTAL INTELLIGENCE
+                    </span>
+
+                    <h1>
+                        Understand the Air
+                        <span>You Breathe.</span>
+                    </h1>
+
+                    <p>
+                        Monitor air quality, explore pollution trends
+                        and make informed decisions for a healthier
+                        environment.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <button
+                            class="primary-btn"
+                            onclick="document.querySelector('[data-page=map]').click()"
+                        >
+                            Explore Air Quality Map →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO VISUAL -->
+                <div class="hero-visual">
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="orbit orbit-three"></div>
+
+                    <div class="earth-core">
+                        <span>🌍</span>
+                    </div>
+
+                    <div class="visual-label">
+                        <span class="status-indicator"></span>
+                        ENVIRONMENTAL INTELLIGENCE
+                    </div>
+
+                    <div class="visual-caption">
+                        <small>MONITORING THE PLANET</small>
+                        <h3>Cleaner Air. Better Future.</h3>
+                    </div>
+
+                </div>
+
+                <div class="hero-status">
+                    <span class="status-indicator"></span>
+                    Environmental Monitoring Dashboard
+                </div>
+
+            </section>
+
+
+            <!-- AQI / ANALYTICS / WEATHER -->
+            <section class="top-grid">
+
+                <!-- AQI CARD -->
+                <div class="panel aqi-panel">
+
+                    <div class="panel-heading">
+                        <h3>Air Quality Index</h3>
+                        <span class="live-dot" id="aqi-live-status">● WAITING</span>
+                    </div>
+
+                    <div class="aqi-content">
+
+                        <div class="aqi-gauge">
+
+                            <div class="gauge-inner">
+
+                                <small>YOUR AQI</small>
+
+                                <h1 id="aqi-value">--</h1>
+
+                                <span id="aqi-status">Unavailable</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- POLLUTANTS -->
+                        <div class="pollutants">
+
+                            <div class="pollutant">
+                                <span class="dot yellow"></span>
+                                <div>
+                                    <b>PM2.5</b>
+                                    <p>--</p>
+                                </div>
+                            </div>
+
+                            <div class="pollutant">
+                                <span class="dot orange"></span>
+                                <div>
+                                    <b>PM10</b>
+                                    <p>--</p>
+                                </div>
+                            </div>
+
+                            <div class="pollutant">
+                                <span class="dot cyan"></span>
+                                <div>
+                                    <b>NO₂</b>
+                                    <p>--</p>
+                                </div>
+                            </div>
+
+                            <div class="pollutant">
+                                <span class="dot green"></span>
+                                <div>
+                                    <b>SO₂</b>
+                                    <p>--</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INDIAN AQI SCALE -->
+                    <div class="aqi-scale">
+
+                        <div class="scale-heading">
+                            <span>INDIAN AQI SCALE</span>
+                            <span>0–500</span>
+                        </div>
+
+                        <div class="scale-bar">
+                            <span class="scale-good"></span>
+                            <span class="scale-satisfactory"></span>
+                            <span class="scale-moderate"></span>
+                            <span class="scale-poor"></span>
+                            <span class="scale-very-poor"></span>
+                            <span class="scale-severe"></span>
+                        </div>
+
+                        <div class="scale-labels">
+                            <span>Good</span>
+                            <span>Satisfactory</span>
+                            <span>Moderate</span>
+                            <span>Poor</span>
+                            <span>Very Poor</span>
+                            <span>Severe</span>
+                        </div>
+
+                    </div>
+
+                    <p class="data-note" id="aqi-data-note">
+                        Waiting for live air-quality data.
+                    </p>
+
+                </div>
+
+
+                <!-- ANALYTICS CARD -->
+                <div class="panel analytics-panel">
+
+                    <div class="panel-heading">
+                        <h3>Pollution Trends</h3>
+                        <span class="trend-tag" id="trend-status">24 Hours</span>
+                    </div>
+
+                    <div class="chart-placeholder">
+
+                        <div class="chart-bars" id="aqi-history-chart"></div>
+
+                    </div>
+
+                    <div class="chart-labels">
+                        <span>--</span>
+                        <span>--</span>
+                        <span>--</span>
+                        <span>--</span>
+                    </div>
+
+                    <p class="data-note" id="history-data-note">AQI history will appear when data is available.</p>
+
+                </div>
+
+
+                <!-- WEATHER CARD -->
+                <div class="panel weather-panel">
+
+                    <h3>Weather Conditions</h3>
+
+                    <div class="weather-main">
+
+                        <span class="weather-icon" id="weather-icon">☀</span>
+
+                        <div>
+                            <h1 id="weather-temperature">--°C</h1>
+                            <p>Temperature</p>
+                        </div>
+
+                    </div>
+
+                    <div class="weather-details">
+
+                        <div>
+                            <span>💧</span>
+                            <p>Humidity <b id="humidity">--%</b></p>
+                        </div>
+
+                        <div>
+                            <span>〰</span>
+                            <p>Wind Speed <b id="wind-speed">-- km/h</b></p>
+                        </div>
+
+                        <p class="data-note" id="weather-data-note">
+                            Waiting for weather data.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MAP / FORECAST / HEALTH -->
+            <section class="bottom-grid">
+
+                <!-- MAP PREVIEW -->
+                <div class="panel map-panel">
+
+                    <div class="panel-heading">
+                        <h3>⌖ Pollution Map</h3>
+                        <span>Explore Areas</span>
+                    </div>
+
+                    <div class="map-placeholder">
+
+                        <span>📍</span>
+                        <h3>Interactive Map</h3>
+
+                        <p>
+                            Location-based pollution monitoring
+                        </p>
+
+                        <button
+                            onclick="document.querySelector('[data-page=map]').click()"
+                        >
+                            Explore Map →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORECAST -->
+                <div class="panel forecast-panel">
+
+                    <h3>Next 24 Hours</h3>
+
+                    <div class="forecast-items">
+
+                        <div>
+                            <small>NOW</small>
+                            <b>--</b>
+                            <span>●</span>
+                        </div>
+
+                        <div>
+                            <small>6 PM</small>
+                            <b>--</b>
+                            <span>●</span>
+                        </div>
+
+                        <div>
+                            <small>9 PM</small>
+                            <b>--</b>
+                            <span>●</span>
+                        </div>
+
+                        <div>
+                            <small>12 AM</small>
+                            <b>--</b>
+                            <span>●</span>
+                        </div>
+
+                    </div>
+
+                    <p class="data-note" id="forecast-data-note">
+                        Forecast data will appear when available.
+                    </p>
+
+                </div>
+
+
+                <!-- HEALTH -->
+                <div class="panel health-panel">
+
+                    <h3>♡ Health Insights</h3>
+
+                    <p>
+                        Understand how different air pollution
+                        levels may affect people.
+                    </p>
+
+                    <div class="health-message" id="health-message">
+                        Health guidance will appear when air-quality data is available.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRECAUTIONS / ALERTS -->
+            <section class="last-grid">
+
+                <div class="panel precautions-panel">
+
+                    <h3>✚ Precautionary Guidance</h3>
+
+                    <ul id="precautions-list">
+                        <li>Recommendations will appear when air-quality data is available.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="panel alerts-panel">
+
+                    <h3>♧ Pollution Alerts</h3>
+
+                    <p id="alert-message">Waiting for air-quality data.</p>
+
+                    <span id="alert-detail">Alerts are based on the selected location.</span>
+
+                </div>
+
+            </section>
+
+
+            <!-- AI ASSISTANT PREVIEW -->
+            <section class="panel assistant-panel">
+
+                <div class="assistant-info">
+
+                    <span class="assistant-icon">✧</span>
+
+                    <div>
+                        <h3>Ask AIRVISION Anything</h3>
+
+                        <p>
+                            Understand your environment with
+                            intelligent air-quality insights.
+                        </p>
+                    </div>
+
+                </div>
+
+                <button
+                    id="assistant-btn"
+                    onclick="document.querySelector('[data-page=assistant]').click()"
+                >
+                    Talk to Assistant →
+                </button>
+
+            </section>
+
+
+            <footer>
+                AIRVISION © 2026 | Environmental Intelligence Platform
+            </footer>
+
+        </section>
+
+
+        <!-- =================================
+             MAP PAGE
+        ================================== -->
+
+        <section class="page" id="map-page">
+
+            <div class="page-header">
+                <span>ENVIRONMENTAL MONITORING</span>
+                <h1>Air Quality Map</h1>
+                <p>Explore pollution levels across different locations.</p>
+            </div>
+
+            
+            <div class="panel page-content">
+
+                <div class="map-dashboard">
+
+                    <!-- MAP HEADER -->
+                    <div class="map-topbar">
+                        <div>
+                            <h3>Live Pollution Overview</h3>
+                            <p>Monitor air quality across different locations</p>
+                        </div>
+
+                        <span class="map-live-status">
+                            <span class="live-dot"></span>
+                            <span id="map-live-status-text">Waiting for location</span>
+                        </span>
+                    </div>
+
+                    <!-- MAP AREA -->
+                    <div class="pollution-map">
+
+                        <div class="map-overlay">
+                            <span class="map-location" id="map-location">Selected location</span>
+                            <span class="map-subtitle" id="map-subtitle">
+                                Search for a location to view its live AQI.
+                            </span>
+                        </div>
+
+                        <div id="map-markers" aria-live="polite"></div>
+
+                        <div class="map-legend">
+                            <h4>AQI LEVELS</h4>
+                            <div><span class="legend-dot good"></span> Good</div>
+                            <div><span class="legend-dot satisfactory"></span> Satisfactory</div>
+                            <div><span class="legend-dot moderate"></span> Moderate</div>
+                            <div><span class="legend-dot poor"></span> Poor</div>
+                            <div><span class="legend-dot very-poor"></span> Very Poor</div>
+                            <div><span class="legend-dot severe"></span> Severe</div>
+                        </div>
+
+                        <span class="map-demo-label" id="map-data-label">
+                            Nearby model estimates · not official monitoring stations
+                        </span>
+                        <a
+                            class="map-attribution"
+                            href="https://www.openstreetmap.org/copyright"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            © OpenStreetMap contributors
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================
+             ANALYTICS PAGE
+        ================================== -->
+
+        <section class="page" id="analytics-page">
+
+            <div class="page-header">
+                <span>DATA & INSIGHTS</span>
+                <h1>Pollution Analytics</h1>
+                <p>Explore pollution trends and historical data.</p>
+            </div>
+
+            <div class="panel page-content">
+                <h3>Recent Air-Quality Analysis</h3>
+                <p id="analytics-summary">Analysis will appear when air-quality data is available.</p>
+                <div class="pollutants" id="analytics-pollutants"></div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             FORECAST PAGE
+        ================================== -->
+
+        <section class="page" id="forecast-page">
+
+            <div class="page-header">
+                <span>PREDICTIVE ENVIRONMENTAL DATA</span>
+                <h1>Air Quality Forecast</h1>
+                <p>Explore upcoming air quality conditions.</p>
+            </div>
+
+            <div class="panel page-content">
+                <h3>Next Six Hours</h3>
+                <div class="forecast-items" id="forecast-detail-list"></div>
+                <p class="data-note" id="forecast-page-alert">Forecast data will appear when available.</p>
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HEALTH PAGE
+        ================================== -->
+
+        <section class="page" id="health-page">
+
+            <div class="page-header">
+                <span>HEALTH & WELLNESS</span>
+                <h1>Health Recommendations</h1>
+                <p>Understand pollution-related precautions.</p>
+            </div>
+
+            <div class="panel page-content">
+                <h3>Personalized Health Insights</h3>
+                <p id="health-page-summary">Guidance will appear when air-quality data is available.</p>
+                <ul id="health-page-precautions">
+                    <li>Recommendations will appear when air-quality data is available.</li>
+                </ul>
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             AI ASSISTANT PAGE
+        ================================== -->
+
+        <section class="page" id="assistant-page">
+
+            <div class="page-header">
+                <span>INTELLIGENT ENVIRONMENTAL ASSISTANCE</span>
+                <h1>AIRVISION AI Assistant</h1>
+                <p>Your environmental information assistant.</p>
+            </div>
+
+            <div class="panel page-content">
+                <h3>Ask AIRVISION</h3>
+                <p>Ask questions about air quality, pollution and environmental conditions.</p>
+
+                <div class="assistant-chat" id="assistant-chat">
+                    <div class="assistant-messages" id="assistant-messages" aria-live="polite">
+                        <div class="chat-message assistant-message">
+                            <span class="chat-avatar">✧</span>
+                            <div class="chat-bubble">
+                                Hello! I can explain the current AQI, dominant pollutant, weather, forecast and health precautions for your selected location.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="assistant-prompts" aria-label="Suggested questions">
+                        <button type="button" data-prompt="What is the current air quality?">Current AQI</button>
+                        <button type="button" data-prompt="Which pollutant is dominant?">Dominant pollutant</button>
+                        <button type="button" data-prompt="What precautions should I take?">Health precautions</button>
+                        <button type="button" data-prompt="What is the weather?">Weather</button>
+                    </div>
+
+                    <form class="assistant-form" id="assistant-form">
+                        <input
+                            type="text"
+                            id="assistant-input"
+                            placeholder="Ask about air quality..."
+                            autocomplete="off"
+                            aria-label="Ask AIRVISION"
+                        >
+                        <button type="submit" id="assistant-send">Send</button>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             ALERTS PAGE
+        ================================== -->
+
+        <section class="page" id="alerts-page">
+
+            <div class="page-header">
+                <span>REAL-TIME NOTIFICATIONS</span>
+                <h1>Pollution Alerts</h1>
+                <p>Stay informed about unhealthy air quality.</p>
+            </div>
+
+            <div class="panel page-content">
+                <h3>Environmental Alerts</h3>
+                <p id="alerts-page-message">Waiting for air-quality data.</p>
+                <p id="alerts-page-detail">Alerts are based on the selected location.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
