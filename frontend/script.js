@@ -2,7 +2,7 @@
    AIRVISION - MAIN JAVASCRIPT
 ========================================== */
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://airvision-backend-435o.onrender.com/api";
 
 /* ==========================================
    1. MULTI-PAGE NAVIGATION
