@@ -391,6 +391,14 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const pathname = url.pathname;
 
+  if (pathname === "/api/health" && req.method === "GET") {
+    res.writeHead(200);
+    return res.end(JSON.stringify({
+      success: true,
+      status: "ok"
+    }));
+  }
+
   // Location search endpoint
   if (
     pathname === "/api/search-location" &&

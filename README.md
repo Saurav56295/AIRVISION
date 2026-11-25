@@ -173,7 +173,17 @@ http://127.0.0.1:5500
 
 AIRVISION provides backend endpoints for location search and air-quality analysis.
 
-### 1. Search Location
+### 1. API Health Check
+
+**Endpoint:**
+
+```http
+GET /api/health
+```
+
+This endpoint confirms that the local backend is ready. The Windows launcher uses it before opening the dashboard.
+
+### 2. Search Location
 
 **Endpoint:**
 
@@ -189,7 +199,7 @@ http://localhost:5000/api/search-location?name=Delhi
 
 This endpoint searches for a location using its city name and returns matching location information.
 
-### 2. Get Air Quality Information
+### 3. Get Air Quality Information
 
 **Endpoint:**
 
