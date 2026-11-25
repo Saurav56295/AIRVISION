@@ -533,8 +533,6 @@ const server = http.createServer(async (req, res) => {
 // 4. Start server
 const PORT = Number(process.env.PORT) || 5000;
 
-server.listen(PORT, () => {
-  console.log(
-    `AIRVISION API running at http://localhost:${PORT}`
-  );
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`AIRVISION API running on port ${PORT}`);
 });
